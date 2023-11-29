@@ -34,7 +34,11 @@ export class Character {
     this.classLevels = [];
   }
 
-  get proficiencyBonus() {
+  get speed(): number {
+    return this.race.speed; //TODO: add speed from traits
+  }
+
+  get proficiencyBonus(): number {
     if(this.level < 1) return 0;
     if(this.level <= 4) return 2;
     if(this.level <= 8) return 3;

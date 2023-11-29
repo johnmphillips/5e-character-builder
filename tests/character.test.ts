@@ -47,6 +47,12 @@ describe("Character", () => {
         });
     });
 
+    describe("Movement Speed", () => {
+        it("should have the base speed of it's race", () => {
+            expect(character.speed).toBe(HUMAN.speed);
+        });
+    });
+
     describe("Checking class levels", () => {
         it("should return true if the character has the specified class level", () => {
 
