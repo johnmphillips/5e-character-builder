@@ -1,6 +1,7 @@
-import { Trait } from "./trait";
+import { Trait } from "./traits/trait";
+import { TraitProvider } from "./traits/TraitProvider";
 
-export class Race {
+export class Race implements TraitProvider {
     readonly name: string;
     readonly traits: Trait[];
     constructor(name: string, traits: Trait[]) {

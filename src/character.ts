@@ -34,7 +34,22 @@ export class Character {
     this.classLevels = [];
   }
 
+  get proficiencyBonus() {
+    if(this.level < 1) return 0;
+    if(this.level <= 4) return 2;
+    if(this.level <= 8) return 3;
+    if(this.level <= 12) return 4;
+    if(this.level <= 16) return 5;
+    return 6;
+  }
+
   gainClassLevel(classLevel: ClassLevel) {
+    if(this.classLevels.length >= 20) {
+      throw new Error(`Maximum level reached`)
+    }
+    if(this.classLevels.includes(classLevel)) {
+      throw new Error(`The same class level cannot be gained twice`)
+    }
     if(classLevel.canApply(this)) {
       this.classLevels.push(classLevel);
     } else {
@@ -42,7 +57,7 @@ export class Character {
     }
   }
 
-  level(): number {
+  get level(): number {
     return this.classLevels.length
   }
 

@@ -1,8 +1,9 @@
-export interface TraitProvider {
-    traits: Trait[]
+export interface Trait {
+    readonly name: string;
+    readonly description: string;
 }
 
-export abstract class Trait {
+export class BasicTrait implements Trait {
     readonly name: string;
     readonly description: string;
 

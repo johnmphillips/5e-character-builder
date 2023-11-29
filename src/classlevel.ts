@@ -1,4 +1,5 @@
-import { Trait, TraitProvider } from "./trait";
+import { Trait } from "./traits/trait";
+import { TraitProvider } from "./traits/TraitProvider";
 import { Character } from "./character";
 
 export enum CharacterClass {
@@ -26,11 +27,8 @@ export class ClassLevel implements TraitProvider {
         this.level = level;
         this.canApply = canApplyFn;
     }
-
+    toString() : string { return `${CharacterClass[this.characterClass]} [${this.level}]`; }
 }
-
-export const FIGHTER_1 = new ClassLevel(CharacterClass.Fighter, 1, [], (character) => character.strength >= 13)
-export const FIGHTER_2 = new ClassLevel(CharacterClass.Fighter, 2, [], (character) => character.hasClassLevel(FIGHTER_1))
 
 export const CLERIC_1 = new ClassLevel(CharacterClass.Cleric, 1, [], (character) => character.wisdom >= 13)
 export const WIZARD_1 = new ClassLevel(CharacterClass.Wizard, 1, [], (character) => character.intelligence >= 13)
