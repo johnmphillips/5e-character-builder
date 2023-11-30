@@ -3,12 +3,15 @@ export interface Trait {
     readonly description: string;
 }
 
-export class BasicTrait implements Trait {
+export interface Skill {
     readonly name: string;
-    readonly description: string;
+    readonly attribute: string;
+}
 
-    constructor(name: string, description: string) {
-        this.name = name;
-        this.description = description;
-    }
+export interface ProficiencyTrait extends Trait{
+    readonly skillProficiencies: []
+    readonly skillExpertises: []
+    readonly weaponProficiencies: []
+    readonly armorProficiencies: []
+    readonly toolProficiencies: []
 }

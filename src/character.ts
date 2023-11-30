@@ -1,5 +1,6 @@
 import { CharacterClass, ClassLevel } from "./classlevel";
-import { Race } from "./race";
+import { Race } from "./races/race";
+import { Trait } from "./traits/trait";
 
 export class Character {
 
@@ -34,6 +35,16 @@ export class Character {
     this.classLevels = [];
   }
 
+  get traits(): Trait[] {
+    const racialTraits = this.race.traits;
+    const classTraits = this.classLevels.flatMap(cl => cl.traits);
+    return racialTraits.concat(classTraits);
+  }
+
+  get hitDice(): string[] {
+    return this.classLevels.map(lvl => lvl.hitDie);
+  }
+
   get speed(): number {
     return this.race.speed; //TODO: add speed from traits
   }
@@ -65,7 +76,7 @@ export class Character {
     return this.classLevels.length
   }
 
-  classSummary(): string {
+  get classSummary(): string {
     const highestLevels = new Map<CharacterClass, number>();
     this.classLevels.forEach((x) => {
       if(highestLevels.has(x.characterClass)) {

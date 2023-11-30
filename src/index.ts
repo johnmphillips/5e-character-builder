@@ -1,5 +1,5 @@
 import { Character } from "./character";
-import { DWARF } from "./race";
+import { DWARF } from "./races/race";
 
 const atlas = new Character("Atlas Roundstone", DWARF, 10, 10, 10, 10, 10, 10);
 

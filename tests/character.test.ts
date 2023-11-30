@@ -72,12 +72,39 @@ describe("Character", () => {
         });
     });
 
+    describe("Traits", () => {
+
+        it("should return all of the traits posessed by a character", () => {
+
+            character = new Character("Dwarfy", DWARF, 10, 10, 10, 10, 10, 10);
+
+            expect(character.traits.find(t => t.name == "Stonecunning"))
+            expect(character.traits.find(t => t.name == "Dwarven Resilience"))
+            expect(character.traits.find(t => t.name == "Stonecunning"))
+        });
+    });
+
+    describe("Hit Dice", () => {
+        it("Should return the hitdice for every class level", () => {
+            character.gainClassLevel(WIZARD_1);
+            character.gainClassLevel(FIGHTER_1);
+            character.gainClassLevel(CLERIC_1);
+
+            const result = character.hitDice;
+
+            expect(result.length).toBe(3);
+            expect(result).toContain("1d10");
+            expect(result).toContain("1d8");
+            expect(result).toContain("1d6");
+        });
+    });
+
     describe("Class Summary", () => {
         it("should return the class name  and highest level of a character with a single class", () => {
             character.gainClassLevel(FIGHTER_1);
             character.gainClassLevel(FIGHTER_2);
     
-            const result = character.classSummary();
+            const result = character.classSummary;
     
             expect(result).toBe("Fighter 2");
         });
@@ -88,13 +115,13 @@ describe("Character", () => {
             character.gainClassLevel(WIZARD_1);
             character.gainClassLevel(CLERIC_1);
     
-            const result = character.classSummary();
+            const result = character.classSummary;
     
             expect(result).toBe("Fighter 2 / Wizard 1 / Cleric 1");
         });
     
         it("should return an empty string if a character has no class levels", () => {
-            const result = character.classSummary();
+            const result = character.classSummary;
     
             expect(result).toBe("");
         });
@@ -146,6 +173,6 @@ describe("Character", () => {
 import { Character } from "../src/character";
 import { CLERIC_1, WIZARD_1 } from "../src/classlevel";
 import { FIGHTER_1, FIGHTER_2 } from "../src/classes/Fighter";
-import { HUMAN } from "../src/race";
+import { DWARF, HUMAN } from "../src/races/race";
 import { ROGUE_1 } from "../src/classes/Rogue";
 
