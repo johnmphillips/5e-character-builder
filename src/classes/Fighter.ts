@@ -1,6 +1,6 @@
 import { ClassLevel, CharacterClass } from "../classlevel";
 
-export const FIGHTER_1 = new ClassLevel(CharacterClass.Fighter, 1, "1d10", [], (character) => character.strength >= 13);
+export const FIGHTER_1 = new ClassLevel(CharacterClass.Fighter, 1, "1d10", [], (character) => character.attributes.strength >= 13);
 export const FIGHTER_2 = new ClassLevel(CharacterClass.Fighter, 2, "1d10", [], (character) => character.hasClassLevel(FIGHTER_1));
 export const FIGHTER_3 = new ClassLevel(CharacterClass.Fighter, 3, "1d10", [], (character) => character.hasClassLevel(FIGHTER_2));
 export const FIGHTER_4 = new ClassLevel(CharacterClass.Fighter, 4, "1d10", [], (character) => character.hasClassLevel(FIGHTER_3));

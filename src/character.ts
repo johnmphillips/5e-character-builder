@@ -1,17 +1,15 @@
+import { Attributes } from "./attributes";
 import { CharacterClass, ClassLevel } from "./classlevel";
 import { Race } from "./races/race";
-import { Trait } from "./traits/trait";
+import { Skills } from "./skills";
+import { Trait, ProficiencyTrait } from "./traits/trait";
 
 export class Character {
 
   readonly name: string;
-  readonly strength: number;
-  readonly dexterity: number;
-  readonly constitution: number;
-  readonly wisdom: number;
-  readonly intelligence: number;
-  readonly charisma: number;
   readonly race: Race;
+  readonly skills: Skills;
+  readonly attributes: Attributes;
   private classLevels: ClassLevel[];
 
   constructor(
@@ -26,12 +24,8 @@ export class Character {
   ) {
     this.name = name;
     this.race = race;
-    this.strength = strength;
-    this.dexterity = dexterity;
-    this.constitution = constitution;
-    this.wisdom = wisdom;
-    this.intelligence = intelligence;
-    this.charisma = charisma;
+    this.attributes = new Attributes(strength, dexterity, constitution, wisdom, intelligence, charisma);
+    this.skills = new Skills(this);
     this.classLevels = [];
   }
 
@@ -39,6 +33,10 @@ export class Character {
     const racialTraits = this.race.traits;
     const classTraits = this.classLevels.flatMap(cl => cl.traits);
     return racialTraits.concat(classTraits);
+  }
+
+  get skillProficiencies(): string[] {
+    return this.traits.filter(t => t instanceof ProficiencyTrait).flatMap(t => t.skillProficiencies);
   }
 
   get hitDice(): string[] {

@@ -20,8 +20,12 @@ export const DWARF = new Race("Dwarf", 25, [
                                         against poison damage`},
     { name: "Stonecunning", description: `Whenever you make an Intelligence (History) check related to the origin of stonework, 
                                         you are considered proficient in the History skill and add double your proficiency bonus 
-                                        to the check, instead of your normal proficiency bonus.`}
+                                        to the check, instead of your normal proficiency bonus.`},
+
 
 ]);
-export const ELF = new Race("Elf", 30, [])
+export const ELF = new Race("Elf", 30, [
+    { name: "Fey Ancestry", description: `You have advantage on saving throws against being charmed, and magic can’t put you to 
+                                        sleep.`}
+])
 export const HUMAN = new Race("Human", 30, [])

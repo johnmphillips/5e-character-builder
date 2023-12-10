@@ -84,6 +84,35 @@ describe("Character", () => {
         });
     });
 
+    describe("Skills", () => {
+        it("should return underlying attribute bonus for skills that character is not proficient in", () => {
+            character = new Character("Dwarfy", DWARF, 8, 10, 12, 14, 16, 18);
+            //str
+            expect(character.skills.athletics).toBe(-1);
+            //dex
+            expect(character.skills.stealth).toBe(0);
+            expect(character.skills.sleightOfHand).toBe(0);
+            expect(character.skills.acrobatics).toBe(0);
+            //wis
+            expect(character.skills.animalHandling).toBe(2);
+            expect(character.skills.insight).toBe(2);
+            expect(character.skills.medicine).toBe(2);
+            expect(character.skills.perception).toBe(2);
+            expect(character.skills.survival).toBe(2);
+            //int
+            expect(character.skills.arcana).toBe(3);
+            expect(character.skills.history).toBe(3);
+            expect(character.skills.investigation).toBe(3);
+            expect(character.skills.nature).toBe(3);
+            expect(character.skills.religion).toBe(3);
+            //cha
+            expect(character.skills.deception).toBe(4);
+            expect(character.skills.intimidation).toBe(4);
+            expect(character.skills.performance).toBe(4);
+            expect(character.skills.persuasion).toBe(4);
+        });
+    });
+
     describe("Hit Dice", () => {
         it("Should return the hitdice for every class level", () => {
             character.gainClassLevel(WIZARD_1);

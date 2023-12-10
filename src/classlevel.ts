@@ -32,7 +32,7 @@ export class ClassLevel implements TraitProvider {
     toString() : string { return `${CharacterClass[this.characterClass]} [${this.level}]`; }
 }
 
-export const CLERIC_1 = new ClassLevel(CharacterClass.Cleric, 1, '1d8', [], (character) => character.wisdom >= 13)
-export const WIZARD_1 = new ClassLevel(CharacterClass.Wizard, 1, '1d6', [], (character) => character.intelligence >= 13)
+export const CLERIC_1 = new ClassLevel(CharacterClass.Cleric, 1, '1d8', [], (character) => character.attributes.wisdom >= 13)
+export const WIZARD_1 = new ClassLevel(CharacterClass.Wizard, 1, '1d6', [], (character) => character.attributes.intelligence >= 13)
 
 

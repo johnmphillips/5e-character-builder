@@ -1,6 +1,6 @@
 import { CharacterClass, ClassLevel } from "../classlevel";
 
-export const ROGUE_1 = new ClassLevel(CharacterClass.Rogue, 1, "1d8", [], (character) => character.dexterity >= 13);
+export const ROGUE_1 = new ClassLevel(CharacterClass.Rogue, 1, "1d8", [], (character) => character.attributes.dexterity >= 13);
 export const ROGUE_2 = new ClassLevel(CharacterClass.Rogue, 2, "1d8", [], (character) => character.hasClassLevel(ROGUE_1));
 export const ROGUE_3 = new ClassLevel(CharacterClass.Rogue, 3, "1d8", [], (character) => character.hasClassLevel(ROGUE_2));
 export const ROGUE_4 = new ClassLevel(CharacterClass.Rogue, 4, "1d8", [], (character) => character.hasClassLevel(ROGUE_3));
