@@ -156,9 +156,255 @@ describe("Character", () => {
         });
     });
 
-    
+    describe("Proficiencies", () => {
+        it("should include all weapon proficiencies", () => {  
 
-    
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    weaponProficiencies: ["example weapon", "another weapon"]
+                },
+                {
+                    name: "example trait2",
+                    weaponProficiencies: ["a stick"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.weaponProficiencies;
+
+            expect(result.size).toBe(3);
+            expect(result).toContain("example weapon"); 
+            expect(result).toContain("another weapon");
+            expect(result).toContain("a stick");
+        });
+
+        it("should not include duplicate weapon proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    weaponProficiencies: ["example weapon", "another weapon"]
+                },
+                {
+                    name: "example trait2",
+                    weaponProficiencies: ["another weapon"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.weaponProficiencies;
+
+            expect(result.size).toBe(2);
+            expect(result).toContain("example weapon"); 
+            expect(result).toContain("another weapon");
+        });
+
+        it("should include all armor proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    armorProficiencies: ["heavy armor"]
+                },
+                {
+                    name: "example trait2",
+                    armorProficiencies: ["light armor"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.armorProficiencies;
+
+            expect(result.size).toBe(2);
+            expect(result).toContain("heavy armor"); 
+            expect(result).toContain("light armor");
+        });
+        
+        it("should not include duplicate armor proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    armorProficiencies: ["light armor"]
+                },
+                {
+                    name: "example trait2",
+                    armorProficiencies: ["light armor"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.armorProficiencies;
+
+            expect(result.size).toBe(1);
+            expect(result).toContain("light armor"); 
+        });
+
+        it("should include all skill proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    skillProficiencies: ["athletics"]
+                },
+                {
+                    name: "example trait2",
+                    skillProficiencies: ["animal handling"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.skillProficiencies;
+
+            expect(result.size).toBe(2);
+            expect(result).toContain("athletics"); 
+            expect(result).toContain("animal handling");
+        });
+        
+        it("should not include duplicate skill proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    skillProficiencies: ["animal handling"]
+                },
+                {
+                    name: "example trait2",
+                    skillProficiencies: ["animal handling"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.skillProficiencies;
+
+            expect(result.size).toBe(1);
+            expect(result).toContain("animal handling"); 
+        });
+
+        it("should include all skill expertise", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    skillExpertise: ["athletics"]
+                },
+                {
+                    name: "example trait2",
+                    skillExpertise: ["animal handling"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.skillExpertise;
+
+            expect(result.size).toBe(2);
+            expect(result).toContain("athletics"); 
+            expect(result).toContain("animal handling");
+        });
+        
+        it("should not include duplicate skill expertise", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    skillExpertise: ["animal handling"]
+                },
+                {
+                    name: "example trait2",
+                    skillExpertise: ["animal handling"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.skillExpertise;
+
+            expect(result.size).toBe(1);
+            expect(result).toContain("animal handling"); 
+        });
+
+        it("should include all tool proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    toolProficiencies: ["Alchemist's supplies"]
+                },
+                {
+                    name: "example trait2",
+                    toolProficiencies: ["Smith's tools"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.toolProficiencies;
+
+            expect(result.size).toBe(2);
+            expect(result).toContain("Alchemist's supplies");
+            expect(result).toContain("Smith's tools");
+        });
+        
+        it("should not include duplicate tool proficiencies", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    toolProficiencies: ["Alchemist's supplies"]
+                },
+                {
+                    name: "example trait2",
+                    toolProficiencies: ["Alchemist's supplies"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.toolProficiencies;
+
+            expect(result.size).toBe(1);
+            expect(result).toContain("Alchemist's supplies");
+        });
+
+        it("should include all languages", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    languages: ["Common"]
+                },
+                {
+                    name: "example trait2",
+                    languages: ["Elvish"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.languages;
+
+            expect(result.size).toBe(2);
+            expect(result).toContain("Common");
+            expect(result).toContain("Elvish");
+        });
+        
+        it("should not include duplicate languages", () => {  
+
+            const testRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    languages: ["Common"]
+                },
+                {
+                    name: "example trait2",
+                    languages: ["Common"]
+                }
+            ]};
+            character = new Character("proftest", testRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.languages;
+
+            expect(result.size).toBe(1);
+            expect(result).toContain("Common");
+        });
+    });
 
     it("should return the total level of the character", () => {
         character.gainClassLevel(FIGHTER_1);
@@ -202,6 +448,6 @@ describe("Character", () => {
 import { Character } from "../src/character";
 import { CLERIC_1, WIZARD_1 } from "../src/classlevel";
 import { FIGHTER_1, FIGHTER_2 } from "../src/classes/Fighter";
-import { DWARF, HUMAN } from "../src/races/race";
+import { DWARF, HUMAN, Race } from "../src/races/race";
 import { ROGUE_1 } from "../src/classes/Rogue";
 

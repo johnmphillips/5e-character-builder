@@ -2,7 +2,7 @@ import { Attributes } from "./attributes";
 import { CharacterClass, ClassLevel } from "./classlevel";
 import { Race } from "./races/race";
 import { Skills } from "./skills";
-import { Trait, ProficiencyTrait } from "./traits/trait";
+import { Trait } from "./traits/trait";
 
 export class Character {
 
@@ -35,8 +35,28 @@ export class Character {
     return racialTraits.concat(classTraits);
   }
 
-  get skillProficiencies(): string[] {
-    return this.traits.filter(t => t instanceof ProficiencyTrait).flatMap(t => t.skillProficiencies);
+  get skillProficiencies(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.skillProficiencies != undefined ? t.skillProficiencies : []));
+  }
+
+  get skillExpertise(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.skillExpertise != undefined ? t.skillExpertise : []));
+  }
+
+  get weaponProficiencies(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.weaponProficiencies != undefined ? t.weaponProficiencies : []));
+  }
+
+  get armorProficiencies(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.armorProficiencies != undefined ? t.armorProficiencies : []));
+  }
+
+  get toolProficiencies(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.toolProficiencies != undefined ? t.toolProficiencies : []));
+  }
+
+  get languages(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.languages != undefined ? t.languages : []));
   }
 
   get hitDice(): string[] {

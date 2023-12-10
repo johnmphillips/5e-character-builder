@@ -26,7 +26,11 @@ export class Skills {
     }
 
     get acrobatics(): number {
-        return this.calculateSkillBonus(this.character.attributes.dexterityModifier, this.character.
+        return this.calculateSkillBonus(
+            this.character.attributes.dexterityModifier, 
+            this.character.skillProficiencies.has("Acrobatics"),
+            this.character.skillExpertise.has("Acrobatics")
+            );
     }
     
     get animalHandling(): number {
