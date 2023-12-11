@@ -448,6 +448,6 @@ describe("Character", () => {
 import { Character } from "../src/character";
 import { CLERIC_1, WIZARD_1 } from "../src/classlevel";
 import { FIGHTER_1, FIGHTER_2 } from "../src/classes/Fighter";
-import { DWARF, HUMAN, Race } from "../src/races/race";
+import { DWARF, HUMAN } from "../src/races/race";
 import { ROGUE_1 } from "../src/classes/Rogue";
 

@@ -1,5 +1,4 @@
 import { Trait } from "./traits/trait";
-import { TraitProvider } from "./traits/TraitProvider";
 import { Character } from "./character";
 
 export enum CharacterClass {
@@ -15,7 +14,7 @@ export enum CharacterClass {
     Bard
 }
 
-export class ClassLevel implements TraitProvider {
+export class ClassLevel {
     readonly characterClass: CharacterClass;
     readonly level: number;
     readonly hitDie: string;
