@@ -1,12 +1,5 @@
 import { Character } from "./character";
 
-export enum SkillName {
-    Acrobatics,
-    AnimalHandling,
-    Arcana,
-    Athletics,
-}
-
 export class Skills {
 
     private character: Character;

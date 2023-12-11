@@ -6,5 +6,7 @@ export interface Trait {
     weaponProficiencies?: string[];
     armorProficiencies?: string[];
     toolProficiencies?: string[];
+    savingThrowProficiencies?: string[];
     languages?: string[];
+    speed?: number;
 }

@@ -1,6 +1,7 @@
 import { Attributes } from "./attributes";
 import { CharacterClass, ClassLevel } from "./classlevel";
 import { Race } from "./races/race";
+import { SavingThrows } from "./savingThrows";
 import { Skills } from "./skills";
 import { Trait } from "./traits/trait";
 
@@ -10,6 +11,7 @@ export class Character {
   readonly race: Race;
   readonly skills: Skills;
   readonly attributes: Attributes;
+  readonly savingThrows: SavingThrows;
   private classLevels: ClassLevel[];
 
   constructor(
@@ -26,6 +28,7 @@ export class Character {
     this.race = race;
     this.attributes = new Attributes(strength, dexterity, constitution, wisdom, intelligence, charisma);
     this.skills = new Skills(this);
+    this.savingThrows = new SavingThrows(this);
     this.classLevels = [];
   }
 
@@ -55,6 +58,10 @@ export class Character {
     return new Set(this.traits.flatMap(t => t.toolProficiencies != undefined ? t.toolProficiencies : []));
   }
 
+  get savingThrowProficiencies(): Set<string> {
+    return new Set(this.traits.flatMap(t => t.savingThrowProficiencies != undefined ? t.savingThrowProficiencies : []));
+  }
+
   get languages(): Set<string> {
     return new Set(this.traits.flatMap(t => t.languages != undefined ? t.languages : []));
   }
@@ -64,7 +71,7 @@ export class Character {
   }
 
   get speed(): number {
-    return this.race.speed; //TODO: add speed from traits
+    return this.traits.map(t => t.speed != undefined ? t.speed : 0).reduce((result, item) => result + item) + this.race.speed;
   }
 
   get proficiencyBonus(): number {

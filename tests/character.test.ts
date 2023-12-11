@@ -47,12 +47,6 @@ describe("Character", () => {
         });
     });
 
-    describe("Movement Speed", () => {
-        it("should have the base speed of it's race", () => {
-            expect(character.speed).toBe(HUMAN.speed);
-        });
-    });
-
     describe("Checking class levels", () => {
         it("should return true if the character has the specified class level", () => {
 
@@ -126,6 +120,28 @@ describe("Character", () => {
             expect(result).toContain("1d8");
             expect(result).toContain("1d6");
         });
+    });
+
+    describe("Movement Speed", () => {
+        it("should return the sum of the base speed and any speed bonuses from traits", () => {
+            const quickRace = { name: "example", speed:30, traits: [
+                {
+                    name: "example trait",
+                    speed: 10
+                },
+                {
+                    name: "example trait 2",
+                    speed: 5
+                },
+            ]};
+            
+            character = new Character("Speedy", quickRace, 10, 10, 10, 10, 10, 10);
+
+            const result = character.speed;
+
+            expect(result).toBe(45);
+        });
+
     });
 
     describe("Class Summary", () => {
@@ -443,7 +459,6 @@ describe("Character", () => {
             }).toThrow('This character is not eligible to gain the class level Rogue [1]')
         });
     });
-    
 });
 import { Character } from "../src/character";
 import { CLERIC_1, WIZARD_1 } from "../src/classlevel";
